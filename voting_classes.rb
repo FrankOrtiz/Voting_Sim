@@ -4,12 +4,20 @@ class Voter
 		@name = name
 	end
 	def to_s
-		"#{name}"
+		"#{self.class}: #{name}"
 	end
 	def self.list
 		self.all.each do |instance|
 			puts instance
 		end
+	end
+	def self.find_by(name)
+		self.all.each do |instance|
+			if instance.name == name
+				return instance
+			end
+		end
+		return nil
 	end
 end
 
@@ -25,15 +33,7 @@ class Politician < Voter
 		@@politicians
 	end
 	def to_s
-		"#{party} Politician: " + super
-	end
-	def self.find_by(name)
-		self.all.each do |politician|
-			if politician.name == name
-				return politician
-			end
-		end
-		return nil
+		"#{party} " + super
 	end
 end
 
@@ -49,6 +49,6 @@ class Person < Voter
 		@@persons
 	end
 	def to_s
-		"#{politics} Politician: " + super
+		"#{politics} " + super
 	end
 end
