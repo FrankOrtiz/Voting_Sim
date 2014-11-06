@@ -1,4 +1,3 @@
-
 def create(object)
 	case object
 	when "politician"

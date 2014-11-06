@@ -35,6 +35,9 @@ class Politician < Voter
 	def to_s
 		"#{party} " + super
 	end
+	def self.parties
+		["Democrat", "Republican"]
+	end
 end
 
 class Person < Voter
@@ -50,5 +53,8 @@ class Person < Voter
 	end
 	def to_s
 		"#{politics} " + super
+	end
+	def self.political_views
+		["Tea Party", "Conservative", "Neutral", "Liberal", "Socialist" ]
 	end
 end
