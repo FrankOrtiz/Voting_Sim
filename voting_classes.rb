@@ -1,5 +1,6 @@
 class Voter
 	attr_accessor :name
+	@@ballots = {rep: 1, dem:1}
 	def initialize(name)
 		@name = name
 	end
@@ -18,6 +19,24 @@ class Voter
 			end
 		end
 		return nil
+	end
+	def self.vote
+		Person.all.each do |person|
+			person.consider(Politician.all.sample)
+		end
+		dark_hole
+		puts "The ballots are in!"
+		@@ballots.each do |k,v|
+			puts "#{k}: #{v}"
+		end
+		@@ballots = {rep: 1, dem:1}
+	end
+	def tally(party)
+		if party == :rep
+			@@ballots[:rep] += 1
+		else
+			@@ballots[:dem] += 1
+		end
 	end
 end
 
@@ -57,4 +76,33 @@ class Person < Voter
 	def self.political_views
 		["Tea Party", "Conservative", "Neutral", "Liberal", "Socialist" ]
 	end
+	def consider(politician)
+		case politics
+		when "Tea Party"
+			view_party(politician, 10)
+		when "Conservative"
+			view_party(politician, 25)
+		when "Neutral"
+			view_party(politician, 50)
+		when "Liberal"
+			view_party(politician, 75)
+		when "Socialist"
+			view_party(politician, 90)
+		end
+	end
+	def vote(party)
+		Voter.tally(party)
+	end
+	def view_party(politician, prob)
+		chance = rand(100) + 1
+		if (politician.party == "Republican") && (chance > prob)
+			tally(:rep)
+		elsif (politician.party == "Democrat") && (chance < prob)
+			tally(:dem)
+		else 
+			view_party(politician, prob)
+		end
+	end
 end
+
+

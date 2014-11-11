@@ -21,7 +21,7 @@ def create_politician
 end
 
 def create_person
-	new_person = Person.new(ask_formal("What is the the person's name?"), ask_formal("What is the person's politics?"))
+	new_person = Person.new(ask_formal("What is the the person's name?"), ask_politics("What is the person's politics?"))
 	puts "You have created a new person."
 	puts "#{new_person.politics} Person: #{new_person.name}."
 	break_line

@@ -40,14 +40,14 @@ def update_by_option(object)
 		when "name"
 			object.name = ask_formal("What would you like to rename #{object.name}?")
 		when "party"
-			object.party = ask_formal("What party would you like to have #{object.name} join?")
+			object.party = ask_party("What party would you like to have #{object.name} join?")
 		end
 	else
 		case ask("Would you like to update the name or the politics of #{object.name}?")
 		when "name"
 			object.name = ask_formal("What would you like to rename #{object.name}?")
 		when "politics"
-			object.politics = ask_formal("What political view would you like to have #{object.name} join?")
+			object.politics = ask_politics("What political view would you like to have #{object.name} join?")
 		end
 	end
 end

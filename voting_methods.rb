@@ -1,5 +1,13 @@
 require './voting_update.rb'
 require './voting_create.rb'
+require './voting_election.rb'
+
+def dark_hole(item=nil)
+	40.times do 
+		puts ""
+	end
+	item
+end
 
 def break_line(br=nil)
 	puts "------------------------------------------------------"
@@ -32,6 +40,15 @@ def ask_party(question)
 	end
 end
 
+def ask_politics(question)
+	politics = ask_formal(question)
+	if Person.political_views.include? politics
+		return politics
+	else 
+		ask_politics("	  Please choose a valid political view.\n#{Person.political_views[0]}, #{Person.political_views[1]}, #{Person.political_views[2]}, #{Person.political_views[3]} or #{Person.political_views[4]} ")
+	end
+end
+
 def list
 	puts "----------------------Politicians---------------------"
 	puts ""
@@ -41,7 +58,6 @@ def list
 		Politician.list
 	end
 	puts ""
-	break_line
 	puts "------------------------Person------------------------"
 		puts ""
 	if Person.all.empty?
@@ -51,4 +67,16 @@ def list
 	end
 	puts ""
 	break_line
+end
+
+
+def sample
+	Politician.new("Jimmy John", "Democrat")
+	Politician.new("Timmy Ton", "Republican")
+	Person.new("Kira Kingly", "Tea Party")
+	Person.new("Robert Ron", "Conservative")
+	Person.new("Alice Arnold", "Neutral")
+	Person.new("Mike Mikerson", "Liberal")
+	Person.new("Luis Lenard", "Socialist")
+	dark_hole
 end
