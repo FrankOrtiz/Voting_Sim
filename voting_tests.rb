@@ -3,8 +3,8 @@ require "./voting_methods"
 
 def politician_test
 	# Create politicians
-	Politician.new("Frank Ortiz", "Democrat")
-	puts Politician.all[0].name == "Frank Ortiz"
+	Politician.new("Charlie Chaplin", "Democrat")
+	puts Politician.all[0].name == "Charlie Chaplin"
 	puts Politician.all[0].party == "Democrat"
 
 	Politician.new("Jay Jones", "Republican")
@@ -15,11 +15,11 @@ def politician_test
 	Politician.list
 
 	# Search politician
-	puts Politician.find_by("Frank Ortiz") == Politician.all[0]
+	puts Politician.find_by("Charlie Chaplin") == Politician.all[0]
 	puts Politician.find_by("Jay Jones") == Politician.all[1]
 
 	# Update politicians
-	Politician.find_by("Frank Ortiz").name = "New Name"
+	Politician.find_by("Charlie Chaplin").name = "New Name"
 	Politician.find_by("New Name").party = "New Party"
 	puts Politician.all[0].to_s == "New Party Politician: New Name"
 
@@ -29,8 +29,8 @@ end
 
 def person_test
 	# Create persons
-	Person.new("Frank Ortiz", "Green")
-	puts Person.all[0].name == "Frank Ortiz"
+	Person.new("Charlie Chaplin", "Green")
+	puts Person.all[0].name == "Charlie Chaplin"
 	puts Person.all[0].politics == "Green"
 
 	Person.new("Jay Jones", "Liberal")
@@ -41,7 +41,7 @@ def person_test
 	Person.list
 
 	# Update persons
-	Person.find_by("Frank Ortiz").name = "New Name"
+	Person.find_by("Charlie Chaplin").name = "New Name"
 	Person.find_by("New Name").politics = "New Politics"
 	puts Person.all[0].to_s == "New Politics Person: New Name"
 
